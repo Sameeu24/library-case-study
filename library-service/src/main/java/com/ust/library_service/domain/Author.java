@@ -17,11 +17,13 @@ import java.util.List;
 public class Author {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    // One author can have multiple books
 
-    @OneToMany(cascade = CascadeType.ALL)
+
+    // One author can have multiple books
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 }
