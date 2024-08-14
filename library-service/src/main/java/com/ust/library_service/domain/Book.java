@@ -20,6 +20,10 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+//    @ManyToOne
+//
+//    @JoinColumn(name = "author_id")
+//    private Author author;
 
 
 }
