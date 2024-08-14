@@ -34,7 +34,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Author saveAuthor(Author author) {
-        return authorRepository.save(author);
+        return authorRepository.saveAndFlush(   author);
     }
 
     @Override

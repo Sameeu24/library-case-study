@@ -41,17 +41,11 @@ public class AuthorController   {
     @PutMapping("/{id}")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
         // Fetch the existing author from the database
-        Optional<Author> existingAuthorOptional = libraryService.getAuthorById(id);
-        if (existingAuthorOptional.isPresent()) {
-            Author existingAuthor = existingAuthorOptional.get();
-            existingAuthor.setName(author.getName());
-
-            existingAuthor.setBooks(author.getBooks());
-            Author updatedAuthor = libraryService.saveAuthor(existingAuthor);
-            return ResponseEntity.ok(updatedAuthor);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        var exisitingAuthor=libraryService.getAuthorById(id).orElseThrow(()->new RuntimeException("Authorn't"));
+        exisitingAuthor.setName(author.getName());
+        exisitingAuthor.setBooks(author.getBooks());
+        libraryService.saveAuthor(exisitingAuthor);
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{id}")

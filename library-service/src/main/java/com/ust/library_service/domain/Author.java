@@ -25,6 +25,6 @@ public class Author {
 
 
     // One author can have multiple books
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Book> books;
 }
